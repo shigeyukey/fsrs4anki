@@ -15,6 +15,7 @@ jobs:
       with:
         repository: open-spaced-repetition/fsrs4anki.wiki.git
         path: source
+        ref: main
 
     - name: Checkout target repository
       uses: actions/checkout@v2
@@ -22,6 +23,7 @@ jobs:
         repository: shigeyukey/fsrs4anki.wiki.git
         path: target
         token: ${{ secrets.GITHUB_TOKEN }}
+        ref: main
 
     - name: Copy files
       run: |
