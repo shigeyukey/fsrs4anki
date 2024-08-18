@@ -13,13 +13,13 @@ jobs:
     - name: Checkout source repository
       uses: actions/checkout@v2
       with:
-        repository: open-spaced-repetition/fsrs4anki.wiki
+        repository: open-spaced-repetition/fsrs4anki.wiki.git
         path: source
 
     - name: Checkout target repository
       uses: actions/checkout@v2
       with:
-        repository: shigeyukey/fsrs4anki.wiki
+        repository: shigeyukey/fsrs4anki.wiki.git
         path: target
         token: ${{ secrets.GITHUB_TOKEN }}
 
