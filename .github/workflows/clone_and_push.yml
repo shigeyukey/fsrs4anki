@@ -11,19 +11,14 @@ jobs:
 
     steps:
     - name: Checkout source repository
-      uses: actions/checkout@v2
-      with:
-        repository: open-spaced-repetition/fsrs4anki.wiki.git
-        path: source
-        ref: main
+      run: |
+        git clone https://github.com/open-spaced-repetition/fsrs4anki.wiki.git source
 
     - name: Checkout target repository
-      uses: actions/checkout@v2
-      with:
-        repository: shigeyukey/fsrs4anki.wiki.git
-        path: target
-        token: ${{ secrets.GITHUB_TOKEN }}
-        ref: main
+      run: |
+        git clone https://github.com/shigeyukey/fsrs4anki.wiki.git target
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Copy files
       run: |
@@ -37,3 +32,5 @@ jobs:
         git add .
         git commit -m "Clone and push wiki"
         git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
