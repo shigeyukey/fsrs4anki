@@ -1,0 +1,37 @@
+name: Clone and Push Wiki
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  clone-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout source repository
+      uses: actions/checkout@v2
+      with:
+        repository: open-spaced-repetition/fsrs4anki.wiki
+        path: source
+
+    - name: Checkout target repository
+      uses: actions/checkout@v2
+      with:
+        repository: shigeyukey/fsrs4anki.wiki
+        path: target
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Copy files
+      run: |
+        cp -r source/* target/
+
+    - name: Commit and push changes
+      run: |
+        cd target
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git add .
+        git commit -m "Clone and push wiki"
+        git push
